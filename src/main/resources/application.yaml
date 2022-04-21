@@ -1,3 +1,6 @@
 spring:
   profiles:
     default: test
+server:
+  servlet:
+    context-path: /test #Defining for purpose of application.
