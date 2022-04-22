@@ -49,7 +49,7 @@ public class StudentRepo {
                 .collect(Collectors.toList());
     }
 
-    public StudentResponse getStudentById (Long studentId) {
+    public StudentResponse getStudentById(Long studentId) {
 //        boolean check = false;
 //        StudentResponse response = null;
 //        for (Student st : studentDb) {
@@ -78,7 +78,7 @@ public class StudentRepo {
                 .orElseThrow(() -> new RuntimeException("Not found!"));
     }
 
-    public Long addStudent (StudentRequest studentRequest) {
+    public Long addStudent(StudentRequest studentRequest) {
         Student student = modelMapper.map(studentRequest, Student.class);
         virtualId++;
         student.setId(virtualId);
@@ -87,7 +87,7 @@ public class StudentRepo {
         return virtualId;
     }
 
-    public StudentResponse updateStudent (StudentRequest studentRequest, Long studentId) {
+    public StudentResponse updateStudent(StudentRequest studentRequest, Long studentId) {
         //student in the database
         Student studentDbModel = studentDb.stream().filter(student -> student.getId().equals(studentId))
                 .findFirst()

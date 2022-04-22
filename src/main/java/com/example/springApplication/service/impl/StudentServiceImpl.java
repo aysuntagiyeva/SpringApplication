@@ -33,7 +33,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentResponse updateStudent(StudentRequest studentRequest, Long studentId) {
-        //System.out.println("Update method") - Log
+        //System.out.println("Update method") - it means Log
         return repo.updateStudent(studentRequest, studentId);
     }
 

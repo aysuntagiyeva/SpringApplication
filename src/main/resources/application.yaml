@@ -1,6 +1,9 @@
 spring:
   profiles:
     default: test
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 server:
   servlet:
     context-path: /test #Defining for purpose of application.

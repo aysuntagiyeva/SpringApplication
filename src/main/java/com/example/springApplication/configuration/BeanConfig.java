@@ -1,6 +1,5 @@
 package com.example.springApplication.configuration;
 
-import com.example.springApplication.entity.Student;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
