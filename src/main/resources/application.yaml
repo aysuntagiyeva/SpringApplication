@@ -1,6 +1,6 @@
 spring:
-  profiles:
-    default: test
+  #profiles:
+    #default: test
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

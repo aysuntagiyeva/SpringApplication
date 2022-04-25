@@ -1,16 +1,16 @@
 package com.example.springApplication.repository;
 
-import com.example.springApplication.dto.request.StudentRequest;
 import com.example.springApplication.dto.response.StudentResponse;
 import com.example.springApplication.entity.Student;
+import com.example.springApplication.exception.StudentNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -30,7 +30,9 @@ public class StudentRepo {
                 UUID.randomUUID().toString()));
     }
 
-    public List<StudentResponse> getStudentList() {
+    public List<Student> getStudentList() {
+        return studentDb;
+
 //        List<StudentResponse> responseStudentList = new ArrayList<>();
 //        for (Student st : studentDb) {
 //            StudentResponse response = StudentResponse.builder()
@@ -44,12 +46,12 @@ public class StudentRepo {
 //        }
 //
 //        return responseStudentList;
-        return studentDb.stream()
-                .map(student -> modelMapper.map(student, StudentResponse.class))
-                .collect(Collectors.toList());
     }
 
-    public StudentResponse getStudentById(Long studentId) {
+    public Student getStudentById(Long studentId) {
+        return studentDb.stream().filter(student -> student.getId().equals(studentId))
+                .findFirst().get();
+
 //        boolean check = false;
 //        StudentResponse response = null;
 //        for (Student st : studentDb) {
@@ -71,15 +73,9 @@ public class StudentRepo {
 //        }
 //
 //        return response;
-
-        return studentDb.stream().filter(student -> student.getId().equals(studentId))
-                .findFirst()
-                .map(student -> modelMapper.map(student, StudentResponse.class))
-                .orElseThrow(() -> new RuntimeException("Not found!"));
     }
 
-    public Long addStudent(StudentRequest studentRequest) {
-        Student student = modelMapper.map(studentRequest, Student.class);
+    public Long addStudent(Student student) {
         virtualId++;
         student.setId(virtualId);
         student.setPrivateColumn(UUID.randomUUID().toString());
@@ -87,31 +83,41 @@ public class StudentRepo {
         return virtualId;
     }
 
-    public StudentResponse updateStudent(StudentRequest studentRequest, Long studentId) {
+    public Student updateStudent(Student student, Long studentId) {
         //student in the database
-        Student studentDbModel = studentDb.stream().filter(student -> student.getId().equals(studentId))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Not found!"));
+        Student studentDbModel = studentDb.stream().filter(studentDb -> studentDb.getId().equals(studentId))
+                .findFirst().get();
 
         //Making student from service by request.
-        Student newStudent = modelMapper.map(studentRequest, Student.class);
-        newStudent.setId(studentDbModel.getId());
-        newStudent.setPrivateColumn(studentDbModel.getPrivateColumn());
+        student.setId(studentDbModel.getId());
+        student.setPrivateColumn(studentDbModel.getPrivateColumn());
 
         //Deleting old student and adding new student, i.e. updating process.
         studentDb.remove(studentDbModel);
-        studentDb.add(newStudent);
+        studentDb.add(student);
 
-        return modelMapper.map(newStudent, StudentResponse.class);
+        return student;
     }
 
-    public StudentResponse deleteStudent(Long studentId) {
-        Student studentRemove = studentDb.stream().filter(student -> student.getId().equals(studentId))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Not found!"));
-        studentDb.remove(studentRemove);
+    public Student deleteStudent(Long studentId) {
+        Optional<Student> studentRemove = studentDb.stream().filter(student -> student.getId().equals(studentId))
+                .findFirst();
+        studentDb.remove(studentRemove.get());
 
-        return modelMapper.map(studentRemove, StudentResponse.class);
+        return studentRemove.get();
+    }
+
+    public boolean checkStudent(Long studentId) {
+
+        boolean k = false;
+        Optional<Student> studentModel = studentDb.stream().filter(student -> student.getId().equals(studentId))
+                .findFirst();
+        if (studentModel.isPresent()) {
+            k = true;
+        }
+
+        return k;
+
     }
 
 }
