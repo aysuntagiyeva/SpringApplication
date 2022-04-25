@@ -1,10 +1,6 @@
 package com.example.springApplication.repository;
 
-import com.example.springApplication.dto.response.StudentResponse;
 import com.example.springApplication.entity.Student;
-import com.example.springApplication.exception.StudentNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,10 +9,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-@RequiredArgsConstructor
 public class StudentRepo {
 
-    private final ModelMapper modelMapper;
     public static List<Student> studentDb = new ArrayList<>();
     private static Long virtualId = 1L;
 
