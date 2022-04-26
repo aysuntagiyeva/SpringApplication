@@ -3,6 +3,7 @@ package com.example.springApplication.controller;
 import com.example.springApplication.dto.request.StudentRequest;
 import com.example.springApplication.dto.response.StudentResponse;
 import com.example.springApplication.service.StudentService;
+import com.example.springApplication.service.StudentServiceModern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +16,13 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+    private final StudentServiceModern serviceModern;
 
     //this part for link
     @GetMapping
     public List<StudentResponse> getStudentList() {
-        return studentService.getStudentList();
+        //return studentService.getStudentList();
+        return serviceModern.findAll();
     }
 
     @GetMapping("/{id}")

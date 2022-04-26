@@ -20,8 +20,7 @@ public class StudentRepo {
                 "Nasirli",
                 19,
                 "Baku",
-                "+994706378862",
-                UUID.randomUUID().toString()));
+                "+994706378862"));
     }
 
     public List<Student> getStudentList() {
@@ -72,7 +71,6 @@ public class StudentRepo {
     public Long addStudent(Student student) {
         virtualId++;
         student.setId(virtualId);
-        student.setPrivateColumn(UUID.randomUUID().toString());
         studentDb.add(student);
         return virtualId;
     }
@@ -84,7 +82,6 @@ public class StudentRepo {
 
         //Making student from service by request.
         student.setId(studentDbModel.getId());
-        student.setPrivateColumn(studentDbModel.getPrivateColumn());
 
         //Deleting old student and adding new student, i.e. updating process.
         studentDb.remove(studentDbModel);
