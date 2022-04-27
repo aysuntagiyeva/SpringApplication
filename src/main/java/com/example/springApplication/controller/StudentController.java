@@ -30,11 +30,17 @@ public class StudentController {
         return studentService.getStudentById(studentId);
     }
 
+    @GetMapping("/{address}")
+    public List<StudentResponse> getStudentsByAddress(@RequestParam String address) {
+        return serviceModern.getStudentsByAddress(address);
+    }
+
     @PostMapping
     public Long addStudent(@RequestBody StudentRequest studentRequest) {
-        return studentService.addStudent(studentRequest);
+        //return studentService.addStudent(studentRequest);
         //If we accept an object, we must use @RequestBody for its accepting like an Object.
         //Vice-versa, considering null.
+        return serviceModern.addStudent(studentRequest);
     }
 
     @PutMapping //There is not any String, so, it means QueryParam.
