@@ -2,7 +2,8 @@ package com.example.springApplication.enums;
 
 public enum ExceptionCodes {
 
-    STUDENT_NOT_FOUND_EXCEPTION(1000);
+    STUDENT_NOT_FOUND_EXCEPTION(100),
+    VALIDATION_EXCEPTION(101);
 
     private int code;
 

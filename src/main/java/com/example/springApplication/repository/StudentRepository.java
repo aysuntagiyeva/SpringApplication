@@ -12,4 +12,10 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     List<Student> findAllByAddress(String address);
 
+//    @Query(value = "select * from spring.student where id = ?1", nativeQuery = true) //Native Query
+//    Student getById(Long id);
+
+//    @Query(value = "select s from Student s where s.id =: studentId") //JPQL
+//    Student getById(@Param("studentId") Long id);
+
 }

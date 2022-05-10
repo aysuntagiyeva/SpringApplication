@@ -3,6 +3,7 @@ package com.example.springApplication.service.impl;
 import com.example.springApplication.dto.request.StudentRequest;
 import com.example.springApplication.dto.response.StudentResponse;
 import com.example.springApplication.entity.Student;
+import com.example.springApplication.exception.StudentNotFoundException;
 import com.example.springApplication.repository.StudentRepository;
 import com.example.springApplication.service.StudentServiceModern;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,26 @@ public class StudentServiceModernImpl implements StudentServiceModern {
     }
 
     @Override
+    public StudentResponse getStudentById(Long id) {
+        return studentRepository.findById(id)
+                .map(student -> modelMapper.map(student, StudentResponse.class))
+                .orElseThrow(() -> new StudentNotFoundException("Not found!"));
+    }
+
+    @Override
     public StudentResponse updateStudent(StudentRequest studentRequest, Long studentId) {
-        return null;
+        Student dbStudent = studentRepository.findById(studentId)
+                .orElseThrow(() -> new StudentNotFoundException("Not found!"));
+        modelMapper.map(studentRequest, dbStudent);
+        studentRepository.save(dbStudent);
+        return modelMapper.map(dbStudent, StudentResponse.class);
+    }
+
+    @Override
+    public StudentResponse deleteStudent(Long studentId) {
+        Student dbStudent = studentRepository.findById(studentId)
+                .orElseThrow(() -> new StudentNotFoundException("Not found!"));
+        studentRepository.delete(dbStudent);
+        return modelMapper.map(dbStudent, StudentResponse.class);
     }
 }

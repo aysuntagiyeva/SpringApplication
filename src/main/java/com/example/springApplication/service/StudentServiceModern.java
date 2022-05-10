@@ -13,6 +13,10 @@ public interface StudentServiceModern {
 
     List<StudentResponse> getStudentsByAddress(String address);
 
+    StudentResponse getStudentById(Long id);
+
     StudentResponse updateStudent(StudentRequest studentRequest, Long studentId);
+
+    StudentResponse deleteStudent(Long studentId);
 
 }
