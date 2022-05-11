@@ -14,12 +14,12 @@ public class StudentRepo {
     private static Long virtualId = 1L;
 
     static {
-        studentDb.add(new Student(virtualId,
-                "Jala",
-                "Nasirli",
-                19,
-                "Baku",
-                "+994706378862"));
+//        studentDb.add(new Student(virtualId,
+//                "Jala",
+//                "Nasirli",
+//                19,
+//                "Baku",
+//                "+994706378862"));
     }
 
     public List<Student> getStudentList() {

@@ -8,19 +8,22 @@ import javax.validation.constraints.NotNull;
 @Data
 public class StudentRequest {
 
-    @NotNull //validation
+    @NotBlank //validation
     private String name;
 
-    @NotNull
+    @NotBlank
     private String surname;
 
-    @NotBlank
+    @NotNull
     private Integer age;
 
-    @NotNull
+    @NotBlank
     private String address;
 
-    @NotNull
+    @NotBlank
     private String phone;
+
+    @NotNull
+    private SeriesRequest series;
 
 }

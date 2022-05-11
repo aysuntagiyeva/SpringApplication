@@ -12,7 +12,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none #for recreating table
+      ddl-auto: none #to don't recreate table
 server:
   servlet:
     context-path: /test #Defining for purpose of application.

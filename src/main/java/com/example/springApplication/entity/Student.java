@@ -5,7 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 
 @Getter
 @Setter
@@ -24,5 +32,9 @@ public class Student {
     private Integer age;
     private String address;
     private String phone;
+
+    @OneToOne(cascade = CascadeType.ALL) //for connecting
+    @JoinColumn(name = "series_id", referencedColumnName = "id")
+    private Series series;
 
 }

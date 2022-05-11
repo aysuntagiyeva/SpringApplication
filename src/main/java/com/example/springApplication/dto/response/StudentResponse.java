@@ -17,5 +17,6 @@ public class StudentResponse {
     private Integer age;
     private String address;
     private String phone;
+    private SeriesResponse series;
 
 }

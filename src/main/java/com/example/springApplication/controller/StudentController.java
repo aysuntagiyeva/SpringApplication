@@ -40,8 +40,8 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public StudentResponse getStudentById(@PathVariable @Min(value = 0, message = "ID which entered must be equal or greater than 0!")
-                                                      Long id) { //@Min is using to check inline.
+    public StudentResponse getStudentById(@RequestParam @Min(value = 0, message = "ID which entered must be" +
+            "equal or greater than 0!") Long id) { //@Min is using to check inline.
         //return studentService.getStudentById(studentId);
         return serviceModern.getStudentById(id);
     }
@@ -72,7 +72,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/{studentId}")
-    public StudentResponse deleteStudent(@PathVariable Long studentId) {
+    public StudentResponse deleteStudent(@PathVariable @Min(value = 0) Long studentId) {
         //return studentService.deleteStudent(studentId);
         return serviceModern.deleteStudent(studentId);
     }
