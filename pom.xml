@@ -99,6 +99,8 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <finalName>SpringApplication</finalName>
     </build>
 
 </project>
