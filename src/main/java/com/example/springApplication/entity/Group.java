@@ -15,7 +15,6 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "group")
-
 public class Group {
 
     @Id
@@ -23,7 +22,7 @@ public class Group {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "group" )
+    @OneToMany(mappedBy = "group")
     private List<Student> students;
 
 }
