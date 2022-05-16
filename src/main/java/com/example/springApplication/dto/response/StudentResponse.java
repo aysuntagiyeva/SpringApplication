@@ -18,5 +18,6 @@ public class StudentResponse {
     private String address;
     private String phone;
     private SeriesResponse series;
+    private GroupResponse group;
 
 }
