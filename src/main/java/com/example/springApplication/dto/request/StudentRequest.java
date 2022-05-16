@@ -23,7 +23,10 @@ public class StudentRequest {
     @NotBlank
     private String phone;
 
-    @NotNull
+    @NotNull //Object
     private SeriesRequest series;
+
+    @NotNull
+    private GroupRequest group;
 
 }
