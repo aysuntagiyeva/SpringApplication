@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,5 +37,9 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL) //for connecting
     @JoinColumn(name = "series_id", referencedColumnName = "id")
     private Series series;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    private Group group;
 
 }
