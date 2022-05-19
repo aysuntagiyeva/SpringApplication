@@ -33,12 +33,12 @@ public class StudentServiceModernImpl implements StudentServiceModern {
         return savedStudent.getId();
     }
 
-    @Override
-    public List<StudentResponse> getStudentsByAddress(String address) {
-        return studentRepository.findAllByAddress(address).stream()
-                .map(student -> modelMapper.map(student, StudentResponse.class))
-                .collect(Collectors.toList());
-    }
+//    @Override
+//    public List<StudentResponse> getStudentsByAddress(String address) {
+//        return studentRepository.findAllByAddress(address).stream()
+//                .map(student -> modelMapper.map(student, StudentResponse.class))
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public StudentResponse getStudentById(Long id) {

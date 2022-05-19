@@ -11,7 +11,7 @@ public interface StudentServiceModern {
 
     Long addStudent(StudentRequest studentRequest);
 
-    List<StudentResponse> getStudentsByAddress(String address);
+//    List<StudentResponse> getStudentsByAddress(String address);
 
     StudentResponse getStudentById(Long id);
 

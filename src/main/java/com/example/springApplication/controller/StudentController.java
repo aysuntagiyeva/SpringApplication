@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @RestController
@@ -40,16 +39,16 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public StudentResponse getStudentById(@RequestParam @Min(value = 0, message = "ID which entered must be" +
+    public StudentResponse getStudentById(@PathVariable("id") @Min(value = 0, message = "ID which entered must be" +
             "equal or greater than 0!") Long id) { //@Min is using to check inline.
         //return studentService.getStudentById(studentId);
         return serviceModern.getStudentById(id);
     }
 
-    @GetMapping("/{address}")
-    public List<StudentResponse> getStudentsByAddress(@RequestParam @Size(min = 0) String address) {
-        return serviceModern.getStudentsByAddress(address);
-    }
+//    @GetMapping("/{address}")
+//    public List<StudentResponse> getStudentsByAddress(@PathVariable @Size(min = 0) String address) {
+//        return serviceModern.getStudentsByAddress(address);
+//    }
 
     @PostMapping
     public Long addStudent(@RequestBody @Valid StudentRequest studentRequest) { //@Valid is using to check inside of Object.

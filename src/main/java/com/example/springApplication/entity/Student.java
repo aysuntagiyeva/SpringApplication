@@ -38,7 +38,7 @@ public class Student {
     @JoinColumn(name = "series_id", referencedColumnName = "id")
     private Series series;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Group group;
 
