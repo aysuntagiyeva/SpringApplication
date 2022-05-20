@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,7 +37,7 @@ public class Student {
     @JoinColumn(name = "series_id", referencedColumnName = "id")
     private Series series;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Group group;
 
